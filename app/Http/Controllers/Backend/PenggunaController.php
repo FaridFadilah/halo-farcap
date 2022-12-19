@@ -52,7 +52,7 @@ class PenggunaController extends Controller{
         $getdata = Pengguna::find($id)->first();
         // $updated = $request->all();
         return response()->json([
-            'message' => dd($request->all()->nama)
+            // 'message' => dd($request->all()->nama)
         ]);
         
 
