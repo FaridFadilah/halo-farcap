@@ -39,6 +39,11 @@ class PenggunaController extends Controller{
                 'data' => null
             ]);
         }
+        
+        $photo = $request->file('photo');
+        $filename = $photo->hashName();
+        $photo->move('photo');
+        $payload['photo'] = $request->getSchemeAndHttpHost(). '/photo/' . $filename;
 
         $pengguna = Pengguna::create($payload);
         return response()->json([
@@ -51,6 +56,24 @@ class PenggunaController extends Controller{
     public function Update(Request $request, $id){
         $getdata = Pengguna::find($id)->first();
         // $updated = $request->all();
+        $payload = $request->all();
+        if(!isset($payload['password'])){
+            return response()->json([
+                'status' => false,
+                'message' => 'wajib ada password',
+                'data' => null
+            ]);
+        }
+
+        $photo = $request->file('photo');
+        if($photo != null){
+            $filename = $photo->hashName();
+            $photo->move('photo');
+            $payload['photo'] = $request->getSchemeAndHttpHost(). '/photo/' . $filename;
+        }
+        
+        Pengguna::where('id', $id)->update();
+        
         return response()->json([
             // 'message' => dd($request->all()->nama)
         ]);
