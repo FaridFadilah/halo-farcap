@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\UploadController;
@@ -34,5 +35,7 @@ Route::get("/",fn() => view('auth.home'))->name("home")->middleware('withAuth');
 // Route::resource("sekolah", SekolahController::class);
 
 // Route::controller(AuthController::class)
-Route::any('/login', [AuthController::class, 'login'])->middleware(['noAuth'])->name('login');
-Route::any('/logout', [AuthController::class, 'logout'])->middleware(['withAuth'])->name('logout');
+// Route::any('/login', [AuthController::class, 'login'])->middleware(['noAuth'])->name('login');
+// Route::any('/logout', [AuthController::class, 'logout'])->middleware(['withAuth'])->name('logout');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');

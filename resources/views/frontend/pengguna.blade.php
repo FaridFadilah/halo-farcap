@@ -8,6 +8,9 @@
 </head>
 <body>
   <form action="">
+
+    <img src="" alt="" id="photo">
+    <input type="text" id="nama">
     <input type="text" id="email">
     <input type="text" id="password">
     <input type="file" id="photo">
@@ -30,7 +33,7 @@
       fd.append('email', email)
 
       if(password !== '') return fd.append('password', password)
-      if(photo.prop('files').length > 0) return fd.append('photo', photo.props('files')[0])
+      if(photo.prop('files').length > 0) return fd.append('photo', photo.prop('files')[0])
 
       $.ajax({
         url: 'http://localhost:8000/api/pengguna/tambah',
