@@ -27,6 +27,6 @@ class HttpClient{
       return $client->post($url, $body);
     }
     // fetch post
-    return Http::post($url, $body)->json();
+    return Http::withHeaders($headers)->post($url, $body)->json();
   }
 }
